@@ -1,23 +1,31 @@
 package cn.emac.dnspod.services;
 
 import cn.emac.dnspod.DnsPodConfig;
-import cn.emac.dnspod.DnsPodParam;
+import cn.emac.dnspod.model.Record;
+import cn.emac.dnspod.model.Status;
 import junit.framework.Assert;
 import org.junit.Test;
 
-import java.util.Properties;
-
-public class RecordServiceTest {
+public class RecordServiceTest extends BaseTest {
 
     @Test
     public void testExists() throws Exception {
-        Properties props = new Properties();
-        props.setProperty(DnsPodParam.LOGIN_EMAIL, "shen.b@vcooline.com");
-        props.setProperty(DnsPodParam.LOGIN_PASSWORD, "vcl123vcl");
-        DnsPodConfig.init(props);
-        DnsPodConfig.setDomain_id(19501764);
+        Assert.assertTrue(RecordService.exists(DnsPodConfig.getDomain_id(), ""));
+        Assert.assertTrue(RecordService.exists(DnsPodConfig.getDomain_id(), "www"));
+        Assert.assertFalse(RecordService.exists(DnsPodConfig.getDomain_id(), "mmm"));
+    }
 
-        Assert.assertTrue(RecordService.exists("www"));
-        Assert.assertFalse(RecordService.exists("mmm"));
+    @Test
+    public void testCreate() throws Exception {
+        Record record = new Record();
+        record.setDomain_id(DnsPodConfig.getDomain_id());
+        record.setSub_domain("test");
+        record.setRecord_type("A");
+        record.setRecord_line("默认");
+        record.setValue("115.28.77.100");
+        record.setMx("0");
+        record.setTtl("600");
+        Status status = RecordService.create(record);
+        Assert.assertEquals("1", status.getCode());
     }
 }

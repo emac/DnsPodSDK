@@ -5,10 +5,10 @@ package cn.emac.dnspod;
  */
 public interface DnsPodUrls {
 
-    String BASE_URL = "https://dnsapi.cn";
+    String BASE = "https://dnsapi.cn";
 
     // domain
-    String DOMAIN_LIST = "/Domain.List";
+    String DOMAIN_INFO = "/Domain.Info";
 
     // record
     String RECORD_LIST = "/Record.List";

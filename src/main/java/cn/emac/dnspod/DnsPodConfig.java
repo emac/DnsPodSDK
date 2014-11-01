@@ -15,14 +15,15 @@ public class DnsPodConfig {
     private static String format;
     private static String lang;
     private static String error_on_empty;
-    private static int domain_id;
+    private static String domain_id;
 
     /**
      * @param props
+     * @return
      */
-    public static synchronized void init(Properties props) {
+    public static synchronized boolean init(Properties props) {
         if (initialized) {
-            throw new RuntimeException("Config is already initialized!");
+            return false;
         }
 
         if (props == null || props.getProperty(LOGIN_EMAIL) == null || props.getProperty(LOGIN_PASSWORD) == null) {
@@ -35,7 +36,7 @@ public class DnsPodConfig {
         lang = props.getProperty(LANG) != null ? props.getProperty(LANG) : "cn";
         error_on_empty = props.getProperty(ERROR_ON_EMPTY) != null ? props.getProperty(ERROR_ON_EMPTY) : "no";
 
-        initialized = true;
+        return initialized = true;
     }
 
     public static String getLogin_email() {
@@ -58,11 +59,11 @@ public class DnsPodConfig {
         return error_on_empty;
     }
 
-    public static int getDomain_id() {
+    public static String getDomain_id() {
         return domain_id;
     }
 
-    public static void setDomain_id(int domain_id) {
+    public static void setDomain_id(String domain_id) {
         DnsPodConfig.domain_id = domain_id;
     }
 

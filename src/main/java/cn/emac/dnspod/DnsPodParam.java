@@ -20,6 +20,7 @@ public interface DnsPodParam {
     String STATUS = "status";
 
     // domain
+    String DOMAIN = "domain";
     String TYPE = "type";
 
     // record

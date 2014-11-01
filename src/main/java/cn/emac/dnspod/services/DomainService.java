@@ -5,12 +5,10 @@ import com.jayway.jsonpath.JsonPath;
 import org.apache.http.client.fluent.Form;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 
-import static cn.emac.dnspod.DnsPodParam.KEYWORD;
-import static cn.emac.dnspod.DnsPodParam.TYPE;
-import static cn.emac.dnspod.DnsPodUrls.DOMAIN_LIST;
+import static cn.emac.dnspod.DnsPodParam.DOMAIN;
+import static cn.emac.dnspod.DnsPodUrls.DOMAIN_INFO;
 
 /**
  * @author Emac
@@ -18,18 +16,16 @@ import static cn.emac.dnspod.DnsPodUrls.DOMAIN_LIST;
 public class DomainService {
 
     /**
+     * Returns ID of the given domain.
+     *
      * @param domain
      * @return
      */
-    public static int getDomainId(String domain) throws URISyntaxException, IOException {
+    public static String getDomainId(String domain) throws URISyntaxException, IOException {
         Form form = HttpUtils.createBaseForm();
-        String json = HttpUtils.createPostRequest(DOMAIN_LIST, form.add(TYPE, "mine").add(KEYWORD,
-                domain)).execute().returnContent().asString();
-        int size = JsonPath.read(json, "$.info.domain_total");
-        if (size > 0) {
-            return JsonPath.read(json, "$.domains[0].id");
-        }
-        return -1;
+        String json = HttpUtils.createPostRequest(DOMAIN_INFO, form.add(DOMAIN, domain)).execute().returnContent()
+                .asString();
+        return JsonPath.read(json, "$.domain.id");
     }
 
 }
