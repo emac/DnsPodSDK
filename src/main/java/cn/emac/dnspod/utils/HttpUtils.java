@@ -3,8 +3,6 @@ package cn.emac.dnspod.utils;
 import cn.emac.dnspod.DnsPodConfig;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 
 import java.nio.charset.Charset;
 
@@ -15,8 +13,6 @@ import static cn.emac.dnspod.DnsPodUrls.BASE;
  * @author Emac
  */
 public class HttpUtils {
-
-    private static final CloseableHttpClient client = HttpClients.createDefault();
 
     /**
      * @return

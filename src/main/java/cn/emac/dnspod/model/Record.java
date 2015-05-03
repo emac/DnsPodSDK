@@ -5,13 +5,22 @@ package cn.emac.dnspod.model;
  */
 public class Record {
 
+    private String id; // alias: record_id
     private String domain_id;
-    private String sub_domain;
-    private String record_type;
+    private String sub_domain; // alias: name
+    private String record_type; // alias: type
     private String record_line;
     private String value;
     private String mx;
     private String ttl;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getDomain_id() {
         return domain_id;

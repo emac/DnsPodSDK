@@ -15,7 +15,7 @@ public class BaseTest {
     public static void beforeClass() {
         Properties props = new Properties();
         props.setProperty(DnsPodParam.LOGIN_EMAIL, "shen.b@vcooline.com");
-        props.setProperty(DnsPodParam.LOGIN_PASSWORD, "vcl123vcl");
+        props.setProperty(DnsPodParam.LOGIN_PASSWORD, System.getProperty("login.password"));
         DnsPodConfig.init(props);
 
         DnsPodConfig.setDomain_id("19501764");

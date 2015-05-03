@@ -13,7 +13,6 @@ public interface DnsPodUrls {
     // record
     String RECORD_LIST = "/Record.List";
     String RECORD_CREATE = "/Record.Create";
-    String RECORD_REMARK = "/Record.Remark";
-    String RECORD_STATUS = "/Record.Status";
+    String RECORD_REMOVE = "/Record.Remove";
 
 }
